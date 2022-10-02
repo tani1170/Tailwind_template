@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/vite.svg"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Vite App</title>
+    <script type="module" crossorigin src="./assets/main.3c8d3003.js"></script>
+    <link rel="stylesheet" href="./assets/index.2b79d870.css">
+  </head>
+  <body
+    class="mt-10 flex justify-center bg-gradient-to-r from-red-800 via-yellow-600 to-yellow-500"
+  >
+    <main
+      class="mb-8 w-1/2 rounded-md bg-white p-10"
+      id="step"
+      x-data="{ step: 'step1', winetype: 'both', quantity: '6', howoften : 'weekly', amount : '4'}"
+    >
+      <header
+        class="border-b border-slate-500 pt-4 pb-8"
+      >
+        <p class="pb-2">
+          Configure your subscription in
+          4 easy steps:
+        </p>
+        <ul class="">
+          <li
+            class="inline pr-2"
+            :class="{'border-black border-b': step === 'step1' }"
+          >
+            1: Wine type
+          </li>
+          <li
+            class="inline pr-2"
+            :class="{'border-black border-b': step === 'step2' }"
+          >
+            2: Quantity
+          </li>
+          <li
+            class="inline pr-2"
+            :class="{'border-black border-b': step === 'step3' }"
+          >
+            3: Delivery frequency
+          </li>
+          <li
+            class="inline pr-2"
+            :class="{'border-black border-b': step === 'step4' }"
+          >
+            4: Confirmation
+          </li>
+        </ul>
+      </header>
+
+      <!-- SECITION -->
+      <section
+        class="border-b border-slate-500 py-4"
+      >
+        <!-- step 1 -->
+        <div
+          id="step1"
+          x-show="step === 'step1'"
+        >
+          <p class="mb-4">
+            So: You love wine, and want
+            wine delivered to your
+            doorstep on subscription!
+          </p>
+          <p class="mb-4">
+            What type of wine?
+          </p>
+          <form
+            id="winesubscriptionform"
+            class=""
+          >
+            <div
+              class="flex max-h-56 gap-10"
+            >
+              <div class="flex gap-4">
+                <input
+                  type="radio"
+                  id="red"
+                  name="winetype"
+                  value="red"
+                  x-model="winetype"
+                />
+                <img
+                  for="red"
+                  src="./assets/redwine.b79e9d6e.png"
+                  alt=""
+                />
+              </div>
+              <div class="flex gap-4">
+                <input
+                  type="radio"
+                  id="white"
+                  name="winetype"
+                  value="white"
+                  x-model="winetype"
+                />
+
+                <img
+                  for="white"
+                  src="./assets/whitewine.51430d89.png"
+                  alt=""
+                />
+              </div>
+              <div class="flex gap-4">
+                <input
+                  type="radio"
+                  id="rose"
+                  name="winetype"
+                  value="rose"
+                  x-model="winetype"
+                />
+                <img
+                  for="rose"
+                  src="./assets/rosewine.ab10c459.png"
+                  alt=""
+                />
+              </div>
+              <div
+                class="max-w-96 flex gap-4"
+              >
+                <input
+                  type="radio"
+                  id="both"
+                  name="winetype"
+                  value="both"
+                  x-model="winetype"
+                />
+                <img
+                  src="./assets/all.100cfe9a.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- step 2-->
+        <div
+          id="step2"
+          x-show="step === 'step2'"
+        >
+          <p>
+            How many bottles per
+            delivery?
+          </p>
+          <label for="quantity"
+            >Choose how many bottles per
+            delivery:</label
+          >
+          <select
+            name="quantity"
+            id="quantity"
+            x-model="quantity"
+            form="winesubscriptionform"
+          >
+            <option value="6">6</option>
+            <option value="12">
+              12
+            </option>
+            <option value="18">
+              18
+            </option>
+            <option value="24">
+              24
+            </option>
+            <option value="30">
+              30
+            </option>
+          </select>
+        </div>
+        <!-- step 3 -->
+        <div
+          id="step3"
+          x-show="step === 'step3'"
+        >
+          <p>
+            How often do you want the
+            wine delivered?
+          </p>
+          <label for="howoften"
+            >Delivery frequency:</label
+          >
+          <select
+            name="howoften"
+            id="howoften"
+            x-model="howoften"
+            form="winesubscriptionform"
+          >
+            <option value="weekly">
+              Every week!
+            </option>
+            <option value="fortnight">
+              Every second week
+            </option>
+            <option value="month">
+              Once a month
+            </option>
+            <option value="threemonths">
+              Every third month
+            </option>
+          </select>
+        </div>
+        <!-- step 4-->
+        <div
+          id="step4"
+          x-show="step === 'step4'"
+          class="prose"
+        >
+          <h3>Your subscription:</h3>
+
+          <p
+            x-show="winetype === 'red'"
+          >
+            Red wine only
+          </p>
+          <p
+            x-show="winetype === 'white'"
+          >
+            White wine only
+          </p>
+          <p
+            x-show="winetype === 'rose'"
+          >
+            Rosé wine only
+          </p>
+          <p
+            x-show="winetype === 'both'"
+          >
+            All three types of wine! -
+            what a party!
+          </p>
+
+          <p>
+            <span
+              x-text="`${quantity} bottles delivered`"
+            ></span>
+            <span
+              x-show="howoften === 'weekly'"
+              >every week:-)</span
+            >
+            <span
+              x-show="howoften === 'fortnight'"
+              >every second
+              week:-)</span
+            >
+            <span
+              x-show="howoften === 'month'"
+              >in the beginning of every
+              month:-)</span
+            >
+            <span
+              x-show="howoften === 'threemonths'"
+              >in the beginning of every
+              third month:-)</span
+            >
+          </p>
+
+          <p>
+            <span>Price: </span
+            ><span
+              class="font-bold"
+              x-text="`${quantity * 75 + 49} DKK `"
+            ></span
+            ><span
+              >per delivery including
+              transport</span
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer
+        class="flex justify-between py-8"
+      >
+        <div class="">
+          <button
+            id="knap2"
+            class="border-2 border-black p-2"
+            x-on:click="step = 'step1'"
+            x-show="step === 'step2'"
+          >
+            &LeftArrow; Wine type
+          </button>
+          <button
+            id="knap3"
+            class="border-2 border-black p-2"
+            x-on:click="step = 'step2'"
+            x-show="step === 'step3'"
+          >
+            &LeftArrow; Quantity
+          </button>
+          <button
+            id="knap4"
+            class="border-2 border-black p-2"
+            x-on:click="step = 'step3'"
+            x-show="step === 'step4'"
+          >
+            &LeftArrow; Frequency
+          </button>
+        </div>
+        <div class="">
+          <button
+            id="knap2"
+            class="hover-font-bold rounded-md border border-orange-700 p-2 hover:bg-orange-700 hover:text-white"
+            x-on:click="step = 'step2'"
+            x-show="step === 'step1'"
+          >
+            Quantity &RightArrow;
+          </button>
+          <button
+            id="knap3"
+            class="hover-font-bold rounded-md border border-orange-700 p-2 hover:bg-orange-700 hover:text-white"
+            x-on:click="step = 'step3'"
+            x-show="step === 'step2'"
+          >
+            Frequency &RightArrow;
+          </button>
+          <button
+            id="knap4"
+            class="hover-font-bold rounded-md border border-orange-700 p-2 hover:bg-orange-700 hover:text-white"
+            x-on:click="step = 'step4'"
+            x-show="step === 'step3'"
+          >
+            Confirmation &RightArrow;
+          </button>
+          <button
+            id="knap4"
+            class="hover-font-bold rounded-md border border-orange-700 p-2 hover:bg-orange-700 hover:text-white"
+            x-on:click="step = 'step4'"
+            x-show="step === 'step4'"
+          >
+            Put subscription in basket!
+          </button>
+        </div>
+      </footer>
+    </main>
+
+    
+  </body>
+</html>
